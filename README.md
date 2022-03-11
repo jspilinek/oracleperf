@@ -1,9 +1,10 @@
-# oracleperf
+# oracleperf.sql
 Oracle Performance and Diagnostics Report for PTC Windchill PDMLink
 
 Check https://www.ptc.com/en/support/article?n=CS271394 for latest version of this script
 
 General Info:
+
     oracleperf.sql is the main script and will execute the other scripts found in the sql directory
     Results of the script are saved in the html directory
     html/00_oracleperf.html is the main file of the report
@@ -11,6 +12,7 @@ General Info:
     This script is designed for Oracle 11g and later releases
     
 Instructions:
+
     1) Extract contents of oracleperf-v22.04.zip
     2) Change directory to extracted content
     3) Connect to SQL*Plus as system, sysdba: or any user with access to DBA tables
