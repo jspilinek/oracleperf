@@ -1,6 +1,13 @@
 # Change Log
 Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
 
+## V22.04 - 2022-03-08
+### Added
+- Dark Theme!
+### Changed
+- oracleperf.css Defaults to light theme. Switches to dark theme if browser is using dark theme
+- oracleperf.sql slight change to support dark theme
+
 ## V22.03 - 2022-03-03
 ### Added
 - 00_ErrorCheck.sql to perform environment validations and abort if there are any issues detected

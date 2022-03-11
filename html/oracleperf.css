@@ -1,16 +1,14 @@
-body {
-    font:10pt Arial,Helvetica,Geneva,sans-serif; 
-    color:black; 
-    background:white;
-}
-
-p {
+/*Light Theme (Default) */
+:root {
     color: black;
     background: white;
 }
 
+body {
+    font:10pt Arial,Helvetica,Geneva,sans-serif; 
+}
+
 table {
-    color: black;
     font-size:8pt;
     white-space: nowrap;
     border: 1px solid black;
@@ -35,8 +33,6 @@ tr:hover {
 }
 
 .main {
-    color: black;
-    background: white;
     font-size:10pt;
     white-space: nowrap;
     vertical-align: text-top;
@@ -52,13 +48,11 @@ tr:hover {
 
 h1 {
     color: #336699;
-    background: white;
     font:16pt Arial,Helvetica,Geneva,sans-serif;
 }
 
 h2 {
     color: #336699;
-    background: white;
     font:12pt Arial,Helvetica,Geneva,sans-serif;
 }
 
@@ -81,4 +75,108 @@ pre.plan2 {
 }
 pre.plan3 {
     color:green;
+}
+
+/* Dark Theme */
+@media screen and (prefers-color-scheme: dark) {
+
+    :root {
+        color:#c8d1d9;
+        background:#0d1116; 
+    }
+    
+    body {
+        background:#0d1116; 
+        font:10pt Arial,Helvetica,Geneva,sans-serif; 
+    }
+    
+    table {
+        font-size:8pt;
+        white-space: nowrap;
+        border: 1px solid #30363d;
+    }
+    
+    tr:nth-child(even) {
+        background: #161b22;
+    }
+    
+    th {
+        color:#31b752;
+        background: #2b542e;
+        border: 1px solid #30363d;
+    }
+    
+    td {
+        border: 1px solid #30363d;
+    }
+    
+    tr:hover {
+        background: #3700B3;
+    }
+    
+    .main {
+        font-size:10pt;
+        white-space: nowrap;
+        vertical-align: text-top;
+    }
+    
+    .main tr {
+        vertical-align: text-top;
+    }
+    
+    /* Needed to override tr:hover */
+    .main tr:hover {
+        background: #0d1116;
+    }
+    
+    h1 {
+        color: lightskyblue;
+        font:16pt Arial,Helvetica,Geneva,sans-serif;
+    }
+    
+    h2 {
+        color: lightskyblue;
+        font:12pt Arial,Helvetica,Geneva,sans-serif;
+    }
+    
+    p.main-header {
+        font-size:8pt; 
+    }
+    
+    footer {
+        font-size:8pt; 
+        color:grey; 
+        border-top:1px solid grey; 
+        margin-top:30pt;
+    }
+
+    pre.plan1 {
+        /* color:lightblue; */
+        color:#00c1d4;
+    }
+    pre.plan2 {
+        /* color:lightcoral; */
+        color:#ff98ab;
+    }
+    pre.plan3 {
+        /* color:greenyellow; */
+        color:#56bb53;
+    }
+    
+    a {
+        color: #3ba0e6;
+    }
+    
+    a:hover {
+        color: #3b9fe6bb;
+    }
+    
+    a:visited {
+        color: #9e49db;
+    }
+    
+    b.main-header {
+        color:lightskyblue;
+        /* font:12pt Arial,Helvetica,Geneva,sans-serif; */
+    }    
 }

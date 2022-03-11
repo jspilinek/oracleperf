@@ -1,7 +1,7 @@
 -- oracleperf.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Based on gather_info_script.sql
 
-DEF oracleperf_version = "v22.03"
+DEF oracleperf_version = "v22.04"
 DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version';
 DEF title = '&&script_name';
 
@@ -33,16 +33,16 @@ PRO </head>
 PRO <body>
 PRO <h1>&&title</h1>
 PRO <p class="main-header">
-PRO instance:<b>&&instance_name</b>
-PRO version:<b>&&oracle_version</b>
-PRO module:<b>&&current_module</b>
-PRO host:<b>&&hostname</b>
-PRO license:<b>&&license_pack</b>
-PRO days:<b>&&days_up</b>
-PRO generated:<b>&&execute_time</b>
+PRO instance:<b class="main-header">&&instance_name</b>
+PRO version:<b class="main-header">&&oracle_version</b>
+PRO module:<b class="main-header">&&current_module</b>
+PRO host:<b class="main-header">&&hostname</b>
+PRO license:<b class="main-header">&&license_pack</b>
+PRO days:<b class="main-header">&&days_up</b>
+PRO generated:<b class="main-header">&&execute_time</b>
 PRO </p>
 PRO <p class="main-header">
-PRO schema:<b>&&schema_list</b>
+PRO schema:<b class="main-header">&&schema_list</b>
 PRO </p>
 
 PRO <table class="main">
