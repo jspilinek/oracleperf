@@ -6,7 +6,7 @@ Download the latest version from https://www.ptc.com/en/support/article?n=CS2713
 - Added link to article CS271394 on 00_oracleperf.html
 - Error handling for ORA-00904: "DBMS_WORKLOAD_REPOSITORY"."AWR_REPORT_HTML": invalid identifier
   - 00_license.sql checks if user has access to DBMS_WORKLOAD_REPOSITORY in order to generate AWR AwrReports
-  - Log in 00_oracleperf.html if user does not have access to DBMS_WORKLOAD_REPOSITORY
+  - Message in 00_oracleperf.html if user does not have access to DBMS_WORKLOAD_REPOSITORY
   - No longer execute AWR reports if user cannot access DBMS_WORKLOAD_REPOSITORY
 ### Fixed
 - Cleaned up 00_ErrorCheck.sql
