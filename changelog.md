@@ -1,6 +1,17 @@
 # Change Log
 Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
 
+## V22.05 - 2022-03-10
+### Changed
+- Added link to article CS271394 on 00_oracleperf.html
+- Error handling for ORA-00904: "DBMS_WORKLOAD_REPOSITORY"."AWR_REPORT_HTML": invalid identifier
+  - 00_license.sql checks if user has access to DBMS_WORKLOAD_REPOSITORY in order to generate AWR AwrReports
+  - Log in 00_oracleperf.html if user does not have access to DBMS_WORKLOAD_REPOSITORY
+  - No longer execute AWR reports if user cannot access DBMS_WORKLOAD_REPOSITORY
+### Fixed
+- Cleaned up 00_ErrorCheck.sql
+- 00_oracleperf.html displays full_version from V$INSTANCE when version is 18c or later. As an example we now see 19.3.0.0.0 (full_version) instead of 19.0.0.0.0 (version)
+
 ## V22.04 - 2022-03-08
 ### Added
 - Dark Theme!

@@ -1,14 +1,13 @@
 -- oracleperf.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Based on gather_info_script.sql
 
-DEF oracleperf_version = "v22.04"
-DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version';
+DEF oracleperf_version = "v22.05"
+DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version <a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
 
 @@sql/00_ErrorCheck.sql
 
 SET ECHO OFF;
-PRO Generating 00_oracleperf.html
 SET TERMOUT OFF VERIFY OFF;
 SET TRIMSPOOL ON;
 SET HEADING ON;
@@ -20,6 +19,10 @@ ALTER SESSION SET NLS_NUMERIC_CHARACTERS = '.,';
 
 SET PAGESIZE 35;
 SET LINESIZE 80;
+
+SET TERMOUT ON VER OFF;
+PRO Generating 00_oracleperf.html
+SET TERMOUT OFF VER OFF;
 
 SPOOL html/00_oracleperf.html;
 

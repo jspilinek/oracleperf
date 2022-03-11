@@ -8,7 +8,12 @@ COL instance_name NEW_VALUE instance_name FOR A16;
 SELECT instance_name AS instance_name FROM V$INSTANCE;
 
 COL oracle_version NEW_VALUE oracle_version FOR A17;
-SELECT version AS oracle_version FROM V$INSTANCE;
+--SELECT version AS oracle_version FROM V$INSTANCE;
+SELECT CASE 
+    WHEN SUBSTR(version, 1, INSTR(version, '.') -1) >= 18 THEN version_full 
+    ELSE version
+END AS oracle_version
+FROM V$INSTANCE;
 
 COL hostname NEW_VALUE hostname FOR A64;
 SELECT host_name AS hostname FROM V$INSTANCE;

@@ -1,4 +1,4 @@
-# oracleperf.sql
+# oracleperf
 Oracle Performance and Diagnostics Report for PTC Windchill PDMLink
 
 Check https://www.ptc.com/en/support/article?n=CS271394 for latest version of this script
@@ -13,7 +13,7 @@ General Info:
     
 Instructions:
 
-    1) Extract contents of oracleperf-v22.04.zip
+    1) Extract contents of oracleperf-v22.05.zip
     2) Change directory to extracted content
     3) Connect to SQL*Plus as system, sysdba: or any user with access to DBA tables
     4) Execute oracleperf.sql

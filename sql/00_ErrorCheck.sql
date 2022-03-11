@@ -13,6 +13,7 @@ END;
 WHENEVER SQLERROR CONTINUE;
 
 -- Test if sql and sql/sub scripts are accessible
+SET TERMOUT ON VER OFF;
 WHENEVER OSERROR EXIT 'Failed to locate <oracleperf-&oracleperf_version>/sql/00_test1.sql';
 @@sql/00_test1.sql
 WHENEVER OSERROR EXIT 'Failed to locate <oracleperf-&oracleperf_version>/sql/sub/00_test2.sql';
@@ -20,12 +21,7 @@ WHENEVER OSERROR EXIT 'Failed to locate <oracleperf-&oracleperf_version>/sql/sub
 WHENEVER OSERROR CONTINUE;
 
 -- Test if user has access to V$INSTANCE
-WHENEVER SQLERROR EXIT SQL.SQLCODE;
-BEGIN
-EXECUTE IMMEDIATE 'SELECT instance_name FROM V$INSTANCE';
-EXCEPTION
-WHEN OTHERS THEN
-RAISE_APPLICATION_ERROR(-20000, 'Unable to access V$INSTANCE. This can happen if oracleperf.sql script was run as Windchill db user. This script requires system, sysdba, or any user with access to DBA tables');
-end;
-/
+SET TERMOUT ON VER OFF;
+WHENEVER SQLERROR EXIT 'Unable to access V$INSTANCE. This can happen if oracleperf.sql script was run as Windchill db user. This script requires system, sysdba, or any user with access to DBA tables';
+SELECT instance_name FROM V$INSTANCE;
 WHENEVER SQLERROR CONTINUE;
