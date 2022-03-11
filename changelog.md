@@ -1,7 +1,7 @@
 # Change Log
 Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
 
-## V22.05 - 2022-03-10
+## [V22.05] - 2022-03-10
 ### Changed
 - Added link to article CS271394 on 00_oracleperf.html
 - Error handling for ORA-00904: "DBMS_WORKLOAD_REPOSITORY"."AWR_REPORT_HTML": invalid identifier
@@ -12,14 +12,14 @@ Download the latest version from https://www.ptc.com/en/support/article?n=CS2713
 - Cleaned up 00_ErrorCheck.sql
 - 00_oracleperf.html displays full_version from V$INSTANCE when version is 18c or later. As an example we now see 19.3.0.0.0 (full_version) instead of 19.0.0.0.0 (version)
 
-## V22.04 - 2022-03-08
+## [V22.04] - 2022-03-08
 ### Added
 - Dark Theme!
 ### Changed
 - oracleperf.css Defaults to light theme. Switches to dark theme if browser is using dark theme
 - oracleperf.sql slight change to support dark theme
 
-## V22.03 - 2022-03-03
+## [V22.03] - 2022-03-03
 ### Added
 - 00_ErrorCheck.sql to perform environment validations and abort if there are any issues detected
 - 00_ErrorCheck.sql will abort if script is running in SQL Developer. This is done because SQL Developer does not support a lot of the formatting options used (e.g. HTML MARKUP)
