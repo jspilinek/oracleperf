@@ -1,0 +1,1 @@
+SELECT SUM(SSOLDERRCNT) AS "Snapshot Too Old Count" FROM V$UNDOSTAT;

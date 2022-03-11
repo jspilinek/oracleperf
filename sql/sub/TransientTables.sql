@@ -1,0 +1,38 @@
+SELECT owner,
+  table_name,
+  num_rows,
+  blocks,
+  TO_CHAR(last_analyzed,'YYYY-MM-DD HH24:MI:SS') as "Last Analyzed"
+FROM DBA_TABLES
+WHERE OWNER IN (&&schema_list)
+ AND blocks >=500
+ AND table_name IN ('CACHESTATISTICS',
+                    'COLLECTORCACHE',
+                    'EXTENDEDPAGERESULTS',
+                    'JMXNOTIFICATIONS',
+                    'LOG4JAVASCRIPTEVENTS',
+                    'METHODCONTEXTS',
+                    'METHODCONTEXTSTATS',
+                    'METHODSERVERINFO',
+                    'MISCLOGEVENTS',
+                    'MSHEALTHSTATS',
+                    'PAGERESULTS',
+                    'QUEUEENTRY',
+                    'RAWMETHODCONTEXTSTATS',
+                    'RAWSERVLETREQUESTSTATS',
+                    'RECENTUPDATE',
+                    'REMOTECACHESERVERCALLS',
+                    'REQUESTHISTOGRAMS',
+                    'RMIHISTOGRAMS',
+                    'RMIPERFDATA',
+                    'SAMPLEDMETHODCONTEXTS',
+                    'SAMPLEDSERVLETREQUESTS',
+                    'SERVERMANAGERINFO',
+                    'SERVLETREQUESTS',
+                    'SERVLETREQUESTSTATS',
+                    'SERVLETSESSIONSTATS',
+                    'SHADOWCACHE',
+                    'SMHEALTHSTATS',
+                    'TOPSQLSTATS',
+                    'USERAGENTINFO')
+ORDER BY num_rows DESC;
