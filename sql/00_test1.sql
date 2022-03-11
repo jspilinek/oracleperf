@@ -1,0 +1,1 @@
+--This script does not do anything. Used to validate the sql directory is accessible
