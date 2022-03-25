@@ -3,6 +3,7 @@ SELECT col.owner,
     col.column_name,
     col.num_distinct,
     col.density,
+    --TO_CHAR(col.density) AS density,
     col.num_nulls,
     col.nullable,
     tab.num_rows,
@@ -13,7 +14,8 @@ SELECT col.owner,
     col.num_buckets,
     col.data_length,
     col.avg_col_len,
-    col.data_type
+    col.data_type,
+    col.density AS "Full Density"
 FROM dba_tab_columns col, dba_tables tab
 WHERE col.owner IN (&&schema_list)
     AND tab.table_name=col.table_name 

@@ -155,10 +155,16 @@ COLUMN index_type FORMAT a27
 COLUMN stale_stats FORMAT a11;
 
 --Columns.html
-COLUMN num_distinct FORMAT 999,999,999,999,999
+COLUMN num_distinct FORMAT 9,999,999,999
+COLUMN density FORMAT 0.999999 -- This is a truncated density to make more columns visible on the left side of Columns.txt
+COLUMN num_nulls FORMAT 9,999,999,999
 COLUMN nullable FORMAT a8
 COLUMN histogram FORMAT a15
+COLUMN num_buckets FORMAT 999,999
+COLUMN data_length FORMAT 999,999
+COLUMN avg_col_len FORMAT 999,999
 COLUMN data_type FORMAT a30
+COLUMN "Full Density" FORMAT 0.9999999999999999 -- Full density displayed as the last column on the right side of Columns.txt
 
 --ViewDefinitions.html
 COLUMN view_name FORMAT a30
