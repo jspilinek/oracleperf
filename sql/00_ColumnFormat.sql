@@ -239,3 +239,5 @@ COLUMN cpu_time FORMAT 999,999,999,999,999
 
 --FullSqlTextAndPlans.html
 COLUMN parsing_schema_name FORMAT a20
+COLUMN child_number FORMAT 999999999999
+COLUMN plan_hash_value FORMAT 999999999999999
