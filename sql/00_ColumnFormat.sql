@@ -144,8 +144,11 @@ COLUMN distinct_keys FORMAT 9,999,999,999
 COLUMN index_name FORMAT a30 
 COLUMN column_name FORMAT a32
 COLUMN column_position FORMAT 99
+COLUMN "Column#" FORMAT 99
+COLUMN "Sample Percent" FORMAT 999
 COLUMN clustering_factor FORMAT 999,999,999,999,999
 COLUMN leaf_blocks FORMAT 999,999,999
+COLUMN blevel FORMAT 99
 COLUMN index_type FORMAT a27 
 
 --IndexStaleStats.html
