@@ -13,7 +13,7 @@ General Info:
     
 Instructions:
 
-    1) Extract contents of oracleperf-22.05.zip
+    1) Extract contents of oracleperf-22.06.zip
     2) Change directory to extracted content
     3) Connect to SQL*Plus as system, sysdba: or any user with access to DBA tables
     4) Execute oracleperf.sql

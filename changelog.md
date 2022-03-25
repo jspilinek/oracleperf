@@ -1,6 +1,12 @@
 # Change Log
 Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
 
+## [v22.06] - 2022-03-25
+### Fixed
+- Index.txt format
+- Columns.txt format
+- FullSqlTextAndPlans.txt format
+
 ## [v22.05] - 2022-03-10
 ### Changed
 - Added link to article CS271394 on 00_oracleperf.html
