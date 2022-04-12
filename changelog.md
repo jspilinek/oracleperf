@@ -1,6 +1,10 @@
 # Change Log
 Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
 
+## [v22.07] - 2022-04-12
+### Fixed
+- Columns.txt line width
+
 ## [v22.06] - 2022-03-25
 ### Fixed
 - Index.txt format
