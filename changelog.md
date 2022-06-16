@@ -1,6 +1,10 @@
 # Change Log
 Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
 
+## [v22.08] - 2022-06-16
+### Fixed
+- Oracle version wasn't displaying correctly for version prior to 18c
+
 ## [v22.07] - 2022-04-12
 ### Fixed
 - Columns.txt line width
