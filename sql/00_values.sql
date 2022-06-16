@@ -8,12 +8,18 @@ COL instance_name NEW_VALUE instance_name FOR A16;
 SELECT instance_name AS instance_name FROM V$INSTANCE;
 
 COL oracle_version NEW_VALUE oracle_version FOR A17;
---SELECT version AS oracle_version FROM V$INSTANCE;
+COL version_script NEW_VALUE version_script FOR A20;
+
+-- version_full column was added in Oracle 18c
+-- previous releases use version column
 SELECT CASE 
-    WHEN SUBSTR(version, 1, INSTR(version, '.') -1) >= 18 THEN version_full 
-    ELSE version
-END AS oracle_version
+    WHEN SUBSTR(version, 1, INSTR(version, '.') -1) >= 18 THEN '00_version_full.sql'
+    ELSE '00_version.sql'
+END AS version_script
 FROM V$INSTANCE;
+
+PRO &&version_script
+@@sql/&&version_script
 
 COL hostname NEW_VALUE hostname FOR A64;
 SELECT host_name AS hostname FROM V$INSTANCE;
