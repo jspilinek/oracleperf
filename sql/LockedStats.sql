@@ -1,7 +1,7 @@
 DEF title = 'Locked stats (dba_tab_statistics)';
 DEF filename = 'LockedStats.html';
 DEF nextpage = 'TableDOP.html';
-DEF prevpage = 'LongVarchar2Histograms.html';
+DEF prevpage = 'TableStaleStats.html';
 @@00_begin.sql
 
 PRO
