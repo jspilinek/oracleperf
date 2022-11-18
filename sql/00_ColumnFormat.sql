@@ -45,7 +45,7 @@ COLUMN estd_db_time_factor FORMAT 999,999,990.0000
 COLUMN advice_status FORMAT a13;
 COLUMN size_factor FORMAT 990.0000
 COLUMN estd_physical_read_factor FORMAT 990.0000
-COLUMN estd_pct_of_db_time_for_reads FORMAT 990.0
+COLUMN estd_pct_of_db_time_for_reads FORMAT 9999990.0
 
 --PgaTargetAdvice.html
 COLUMN pga_target_for_estimate FORMAT 999,999,999,999,999
