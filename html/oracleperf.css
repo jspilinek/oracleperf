@@ -77,6 +77,15 @@ pre.plan3 {
     color:green;
 }
 
+tr.active {
+    background: lightskyblue;
+    color: black;
+}
+
+td.warn {
+    color: red;
+}
+
 /* Dark Theme */
 @media screen and (prefers-color-scheme: dark) {
 
@@ -178,5 +187,14 @@ pre.plan3 {
     b.main-header {
         color:lightskyblue;
         /* font:12pt Arial,Helvetica,Geneva,sans-serif; */
+    }    
+
+    tr.active {
+        background: lightskyblue;
+        color: black;
+    }
+    
+    td.warn {
+        color: red;
     }    
 }
