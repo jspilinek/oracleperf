@@ -12,7 +12,7 @@ PRO <p>This view gives an idea of how increasing the buffer cache will decrease 
 PRO <p><b>SIZE_FACTOR = 1</b> is the current buffer cache size</p>
 PRO <p><b>SIZE_FACTOR = 2</b> twice the current buffer cache size</p> 
 PRO <p><b>ESTD_*</b> columns give an estimate on how I/O will change when the buffer cache is increased or decreased.<p>
-PRO <p>Goal should be <b>ESTD_PCT_OF_DB_TIME_FOR_READS < 10</b>. If ESTD_PCT_OF_DB_TIME_FOR_READS
+PRO <p>Goal should be <b>ESTD_PCT_OF_DB_TIME_FOR_READS &lt; 10</b>. If ESTD_PCT_OF_DB_TIME_FOR_READS
 PRO is higher, then first tune inefficent SQL. Then wait a day or so to recheck if 
 PRO ESTD_PCT_OF_DB_TIME_FOR_READS has reached the goal. If there are no inefficent SQL to tune, this
 PRO is an indication that more memmory should be allocated to the SGA.</p>
