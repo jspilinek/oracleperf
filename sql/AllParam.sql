@@ -10,4 +10,6 @@ SET MARK HTML OFF;
 PRO <h2>Comments</h2>
 PRO <p>View all parameters</p>
 
+PRO <script>HighlightHiddenParam()</script>
+
 @@00_end.sql

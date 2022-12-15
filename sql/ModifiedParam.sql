@@ -10,4 +10,6 @@ SET MARK HTML OFF;
 PRO <h2>Comments</h2>
 PRO <p>Parameters that have been modified after instance startup with <b>ALTER SESSION</b>.</p>
 
+PRO <script>HighlightHiddenParam()</script>
+
 @@00_end.sql

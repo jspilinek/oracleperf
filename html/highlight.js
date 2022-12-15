@@ -80,7 +80,7 @@ function ImportantParam(){
     }
 }
 
-function NonDefaultParam(){
+function HighlightHiddenParam(){
     var table = document.getElementsByClassName("sortable")[0];
     var rows = table.rows;
     //Find columns
@@ -102,10 +102,8 @@ function NonDefaultParam(){
     for (var i = 1; i < rows.length; i++){
         var textName = rows[i].children[colName].innerText;
 
-        console.log("Row: " + textName);
         if(textName.startsWith("_")){
             highlightRow(rows,i);
-            console.log("highlight");
         }
     }
 }
