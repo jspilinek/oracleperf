@@ -85,16 +85,10 @@ function HighlightHiddenParam(){
     var rows = table.rows;
     //Find columns
     var colName = 0;
-    var colValue = 0;
-    var colDisplayValue = 0;
     for (var i = 0; i < rows[0].childElementCount; i++){
         columnHeader = rows[0].children[i].innerText;
         if (columnHeader == 'NAME'){
             colName = i;
-        }else if (columnHeader == 'VALUE'){
-            colValue = i;
-        }else if (columnHeader == 'DISPLAY_VALUE'){
-            colDisplayValue = i;
         }
     }
     
@@ -104,6 +98,35 @@ function HighlightHiddenParam(){
 
         if(textName.startsWith("_")){
             highlightRow(rows,i);
+        }
+    }
+}
+
+function SgaInfo(){
+    var table = document.getElementsByClassName("sortable")[0];
+    var rows = table.rows;
+    //Find columns
+    var colName = 0;
+    var colPercentage = 0;
+    for (var i = 0; i < rows[0].childElementCount; i++){
+        columnHeader = rows[0].children[i].innerText;
+        if (columnHeader == 'NAME'){
+            colName = i;
+        }else if (columnHeader == 'Percentage'){
+            colPercentage = i;
+        }
+    }
+    
+    //Update className
+    for (var i = 1; i < rows.length; i++){
+        var textName = rows[i].children[colName].innerText;
+        if(textName == 'Free SGA Memory Available'){
+            highlightRow(rows,i);
+        }else if(textName == 'Buffer Cache Size'){
+            var cellText = rows[i].children[colPercentage].innerText;
+            if(cellText < 75){
+                enableWarning(rows,i,colPercentage);
+            }
         }
     }
 }
