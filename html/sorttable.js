@@ -515,8 +515,30 @@ function oracleperf(filename){
     case "SgaInfo.html":
       SgaInfo();
       break;
+    case "SgaTargetAdvice.html":
+      SgaTargetAdvice();
+      break;
+    case "MemoryTargetAdvice.html":
+      MemoryTargetAdvice();
+      break;
     case "DbCacheAdvice.html":
       DbCacheAdvice();
+      break;
+    case "PgaTargetAdvice.html":
+      PgaTargetAdvice();
+      break;
+    case "SharedPoolAdvice.html":
+      SharedPoolAdvice();
+      break;
+    case "DiskIO.html":
+      DiskIO(0);
+      DiskIO(1);
+      break;
+    case "UndoCheck.html":
+      UndoCheck();
+      break;
+    case "PerfTablesAge.html":
+      PerfTablesAge();
       break;
   }
 
@@ -530,10 +552,13 @@ function enableWarning(rows, rowNum, colNum){
   rows[rowNum].children[colNum].className = 'warn';    
 }
 
+/*****************************************************************************************************
+//Red warning text if parameter not set to recommended value
+*****************************************************************************************************/
 function ImportantParam(){
   var table = document.getElementsByClassName("sortable")[0];
   var rows = table.rows;
-  //Find columns
+
   var colName = 0;
   var colValue = 0;
   var colDisplayValue = 0;
@@ -548,7 +573,6 @@ function ImportantParam(){
       }
   }
   
-  //Update className
   for (var i = 1; i < rows.length; i++){
       var textName = rows[i].children[colName].innerText;
       var textValue = rows[i].children[colValue].innerText;
@@ -604,10 +628,13 @@ function ImportantParam(){
   }
 }
 
+/*****************************************************************************************************
+//Highlight rows with hidden parameters (parameter name starts with underscore)
+*****************************************************************************************************/
 function HighlightHiddenParam(){
   var table = document.getElementsByClassName("sortable")[0];
   var rows = table.rows;
-  //Find columns
+
   var colName = 0;
   for (var i = 0; i < rows[0].childElementCount; i++){
       columnHeader = rows[0].children[i].innerText;
@@ -616,7 +643,6 @@ function HighlightHiddenParam(){
       }
   }
   
-  //Update className
   for (var i = 1; i < rows.length; i++){
       var textName = rows[i].children[colName].innerText;
 
@@ -626,10 +652,14 @@ function HighlightHiddenParam(){
   }
 }
 
+/*****************************************************************************************************
+//Highlight row with 'Free SGA Memory Available'
+//Red warning text if 'Buffer Cache Size' percentage < 75
+*****************************************************************************************************/
 function SgaInfo(){
   var table = document.getElementsByClassName("sortable")[0];
   var rows = table.rows;
-  //Find columns
+
   var colName = 0;
   var colPercentage = 0;
   for (var i = 0; i < rows[0].childElementCount; i++){
@@ -641,7 +671,6 @@ function SgaInfo(){
       }
   }
   
-  //Update className
   for (var i = 1; i < rows.length; i++){
       var textName = rows[i].children[colName].innerText;
       if(textName == 'Free SGA Memory Available'){
@@ -655,10 +684,14 @@ function SgaInfo(){
   }
 }
 
+/*****************************************************************************************************
+//Highlight row with SIZE_FACTOR == 1
+//Red warning text if ESTD_PCT_OF_DB_TIME_FOR_READS > 10
+*****************************************************************************************************/
 function DbCacheAdvice(){
   var table = document.getElementsByClassName("sortable")[0];
   var rows = table.rows;
-  //Find columns
+
   var sizeFactor = 0;
   var estdReads = 0;
   for (var i = 0; i < rows[0].childElementCount; i++){
@@ -670,7 +703,6 @@ function DbCacheAdvice(){
       }
   }
   
-  //Update className
   for (var i = 1; i < rows.length; i++){
       var cellText = rows[i].children[sizeFactor].innerText;
       if (cellText == 1){
@@ -682,3 +714,228 @@ function DbCacheAdvice(){
       }
   }
 }
+
+/*****************************************************************************************************
+//Highlight row with PGA_TARGET_FACTOR == 1
+//Red warning text if ESTD_PGA_CACHE_HIT_PERCENTAGE < 90
+*****************************************************************************************************/
+function PgaTargetAdvice(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var sizeFactor = 0;
+  var estdHits = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'PGA_TARGET_FACTOR'){
+          sizeFactor = i;
+      }else if (columnHeader == 'ESTD_PGA_CACHE_HIT_PERCENTAGE'){
+        estdHits = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var cellText = rows[i].children[sizeFactor].innerText;
+      if (cellText == 1){
+          highlightRow(rows,i);
+      }
+      cellText = rows[i].children[estdHits].innerText;
+      if (cellText < 90){
+          enableWarning(rows,i,estdHits);
+      }
+  }
+}
+
+/*****************************************************************************************************
+//Highlight row with SGA_SIZE_FACTOR == 1
+*****************************************************************************************************/
+function SgaTargetAdvice(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var sizeFactor = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'SGA_SIZE_FACTOR'){
+          sizeFactor = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var cellText = rows[i].children[sizeFactor].innerText;
+      if (cellText == 1){
+          highlightRow(rows,i);
+      }
+  }
+}
+
+/*****************************************************************************************************
+//Highlight row with MEMORY_SIZE_FACTOR == 1
+*****************************************************************************************************/
+function MemoryTargetAdvice(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var sizeFactor = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'MEMORY_SIZE_FACTOR'){
+          sizeFactor = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var cellText = rows[i].children[sizeFactor].innerText;
+      if (cellText == 1){
+          highlightRow(rows,i);
+      }
+  }
+}
+
+/*****************************************************************************************************
+//Highlight row with SHARED_POOL_SIZE_FACTOR == 1
+*****************************************************************************************************/
+function SharedPoolAdvice(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var sizeFactor = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'SHARED_POOL_SIZE_FACTOR'){
+          sizeFactor = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var cellText = rows[i].children[sizeFactor].innerText;
+      if (cellText == 1){
+          highlightRow(rows,i);
+      }
+  }
+}
+
+/*****************************************************************************************************
+//Red warning text if 'AvgReadTime (ms)' or 'AvgWriteTime (ms)' >= 10
+*****************************************************************************************************/
+function DiskIO(tableID){
+  var table = document.getElementsByClassName("sortable")[tableID];
+  var rows = table.rows;
+
+  var colRead = 0;
+  var colWrite = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'AvgReadTime (ms)'){
+        colRead = i;
+      }else if (columnHeader == 'AvgWriteTime (ms)'){
+        colWrite = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var textRead = rows[i].children[colRead].innerText;
+      var textWrite = rows[i].children[colWrite].innerText;
+      if (textRead >= 10){
+        enableWarning(rows,i,colRead);
+      }
+      if (textWrite >= 10){
+        enableWarning(rows,i,colWrite);
+      }
+  }
+}
+
+/*****************************************************************************************************
+  Red warning text if 'ACTUAL UNDO SIZE [MB]' < 'NEEDED UNDO SIZE [MB]'
+*****************************************************************************************************/
+function UndoCheck(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var colActual = 0;
+  var colNeeded = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'ACTUAL UNDO SIZE [MB]'){
+        colActual = i;
+      }else if (columnHeader == 'NEEDED UNDO SIZE [MB]'){
+        colNeeded = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var textActual = rows[i].children[colActual].innerText;
+      var textNeeded = rows[i].children[colNeeded].innerText;
+      var intActual = parseInt(textActual.replace(/\,/g,''));
+      var intNeeded = parseInt(textNeeded.replace(/\,/g,''));
+      if (intActual < intNeeded){
+        enableWarning(rows,i,colActual);
+      }
+  }
+}
+
+/*****************************************************************************************************
+  Red warning text if 'Days Old' > threshold
+  Thresholds defined in article CS44623
+*****************************************************************************************************/
+function PerfTablesAge(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var colName = 0;
+  var colDays = 0;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+    columnHeader = rows[0].children[i].innerText;
+    if (columnHeader == 'OWNER.TABLE_NAME'){
+      colName = i;
+    }else if (columnHeader == 'Days Old'){
+      colDays = i;
+    }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+    var textName = rows[i].children[colName].innerText;
+    var textDays = rows[i].children[colDays].innerText;
+    
+    const tableName = textName.substring(textName.indexOf('.')+1);
+
+    switch (tableName){
+      case "CACHESTATISTICS":
+      case "RAWMETHODCONTEXTSTATS":
+      case "RAWSERVLETREQUESTSTATS":
+      case "REMOTECACHESERVERCALLS":
+      case "RMIPERFDATA":
+      case "SAMPLEDMETHODCONTEXTS":
+      case "SAMPLEDSERVLETREQUESTS":
+      case "TOPSQLSTATS":
+        if (textDays > 4){
+          enableWarning(rows,i,colDays);
+        }
+        break;
+      case "JMXNOTIFICATIONS":
+      case "LOG4JAVASCRIPTEVENTS":
+      case "METHODCONTEXTS":
+      case "MISCLOGEVENTS":
+      case "SERVLETREQUESTS":
+        if (textDays > 15){
+          enableWarning(rows,i,colDays);
+        }
+        break;
+      case "METHODCONTEXTSTATS":
+      case "METHODSERVERINFO":
+      case "MSHEALTHSTATS":
+      case "REQUESTHISTOGRAMS":
+      case "RMIHISTOGRAMS":
+      case "SERVERMANAGERINFO":
+      case "SERVLETREQUESTSTATS":
+      case "SERVLETSESSIONSTATS":
+      case "SMHEALTHSTATS":
+      case "USERAGENTINFO":
+        if (textDays > 120){
+          enableWarning(rows,i,colDays);
+        }
+        break;
+    }      
+  }
+}
+
