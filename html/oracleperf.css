@@ -77,7 +77,7 @@ pre.plan3 {
     color:green;
 }
 
-tr.active {
+tr.highlightRow {
     background: lightskyblue;
     color: black;
 }
@@ -189,7 +189,7 @@ td.warn {
         /* font:12pt Arial,Helvetica,Geneva,sans-serif; */
     }    
 
-    tr.active {
+    tr.highlightRow {
         background: lightskyblue;
         color: black;
     }
