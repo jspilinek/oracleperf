@@ -12,6 +12,4 @@ PRO <p>Parameters with non-default value specified in the parameter file.</p>
 PRO <p>Check for any hidden parameters (name starts with underscore). Typically hidden parameters
 PRO should only be set when provided by Oracle Support.</p>
 
-PRO <script>HighlightHiddenParam()</script>
-
 @@00_end.sql

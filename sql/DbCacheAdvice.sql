@@ -21,6 +21,4 @@ PRO to automatically resize the memory allocated to the buffer cache. If both me
 PRO set to zero, then increase the <b>sga_max_size</b> and <b>sga_target</b> to allow Oracle to 
 PRO automatically increase the buffer cache.</p>
 
-PRO <script>DbCacheAdvice()</script>
-
 @@00_end.sql

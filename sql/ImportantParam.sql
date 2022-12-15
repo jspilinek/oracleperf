@@ -37,6 +37,4 @@ PRO <li><b>optimizer_index_caching</b>: Default Recommended: 0</li>
 PRO <li><b>optimizer_index_cost_adj</b> : Default 100, Recommended: 10</li>
 PRO <li><b>optimizer_mode</b> : Default Recommended: ALL_ROWS</li></ul></p>
 
-PRO <script>ImportantParam()</script>
-
 @@00_end.sql
