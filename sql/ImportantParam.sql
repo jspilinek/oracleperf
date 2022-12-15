@@ -25,10 +25,10 @@ PRO <li><b>sga_max_size</b> : 1G minimum, up to 3G is probably reasonable</li>
 PRO <li><b>sga_target</b> : Equal to <b>sga_max_size</b></li></ul></p>
 
 PRO <p>Oracle 12c R1 (12.1.x.x):
-PRO <ul><li><b>optimizer_adaptive_features</b> : 12c R1 (12.1.x.x) Recommended: false</li></ul></p>
+PRO <ul><li><b>optimizer_adaptive_features</b> : 12c R1 (12.1.x.x) Recommended: FALSE</li></ul></p>
 
 PRO <p>Oracle 12c R2 (12.2.x.x) and later versions:
-PRO <ul></li><b>optimizer_adaptive_statistics</b> : 12c R2 (12.2.x.x) Recommended: false</li></ul></p>
+PRO <ul></li><b>optimizer_adaptive_statistics</b> : 12c R2 (12.2.x.x) Recommended: FALSE</li></ul></p>
 
 PRO <p>All releases of Oracle:<ul>
 PRO <li><b>optimizer_dynamic_sampling</b> : Default Recommended: 2</li>
@@ -36,5 +36,7 @@ PRO <li><b>optimizer_features_enable</b> : Default Recommended: match Oracle ver
 PRO <li><b>optimizer_index_caching</b>: Default Recommended: 0</li>
 PRO <li><b>optimizer_index_cost_adj</b> : Default 100, Recommended: 10</li>
 PRO <li><b>optimizer_mode</b> : Default Recommended: ALL_ROWS</li></ul></p>
+
+PRO <script>ImportantParam()</script>
 
 @@00_end.sql
