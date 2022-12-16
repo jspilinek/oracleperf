@@ -1,5 +1,17 @@
 # Change Log
-Download the latest version from https://www.ptc.com/en/support/article?n=CS271394
+Download the latest version from either:
+- https://www.ptc.com/en/support/article?n=CS271394
+- https://github.com/jspilinek/oracleperf/releases
+
+## [v22.09] - 2022-12-15
+### Added
+- Highlight important table rows
+- Warning red text for table cell values
+### Fixed
+- Corrected previous page link on LockedStats.html
+- Increase width of estd_pct_of_db_time_for_reads
+- Corrected < symbol in DbCacheAdvice.html comments
+- Corrected comments in PgaTargetAdvice.html and SharedPoolAdvice.html
 
 ## [v22.08] - 2022-06-16
 ### Fixed
