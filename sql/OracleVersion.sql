@@ -1,6 +1,6 @@
 DEF title = 'Oracle Version (GV$VERSION)';
 DEF filename = 'OracleVersion.html';
-DEF nextpage = 'Exadata.html';
+DEF nextpage = 'Schemas.html';
 DEF prevpage = '00_oracleperf.html';
 @@00_begin.sql
 

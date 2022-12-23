@@ -92,13 +92,15 @@ SELECT listagg('''' || username || '''', ',') within group (order by username) A
 
 COL schema_list NEW_VALUE schema_list;
 SELECT CASE '&&enteredSchema'
-  WHEN 'ALL' THEN (SELECT listagg('''' || username || '''',',') within group (order by username) AS schemas FROM DBA_USERS WHERE username IN (&&valid_schema_list))
+  WHEN 'ALL' THEN (SELECT listagg('''' || username || '''',',') within group (order by username) AS schemas FROM DBA_USERS WHERE username IN (&&valid_schema_list)
+  AND username NOT IN (SELECT owner FROM DBA_TABLES WHERE table_name = 'WBMDBTYPE'))
   ELSE (SELECT '''' || username || '''' AS schemas FROM DBA_USERS WHERE username = '&&enteredSchema' AND username IN (&&valid_schema_list))
 END AS schema_list FROM DUAL;
 
 COL schema_count_found NEW_VALUE schema_count_found;
 SELECT CASE '&&enteredSchema'
-  WHEN 'ALL' THEN (SELECT COUNT(1) FROM DBA_USERS WHERE username IN (&&valid_schema_list))
+  WHEN 'ALL' THEN (SELECT COUNT(1) FROM DBA_USERS WHERE username IN (&&valid_schema_list)
+  AND username NOT IN (SELECT owner FROM DBA_TABLES WHERE table_name = 'WBMDBTYPE'))
   ELSE (SELECT COUNT(1) FROM DBA_USERS WHERE username = '&&enteredSchema' AND username IN (&&valid_schema_list))
 END AS schema_count_found FROM DUAL;
 
