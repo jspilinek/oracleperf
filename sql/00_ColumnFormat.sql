@@ -57,6 +57,9 @@ COLUMN shared_pool_size_factor FORMAT 990.0000
 COLUMN estd_lc_time_saved_factor FORMAT 990.0000
 COLUMN estd_lc_load_time_factor FORMAT 990.0000
 
+--CursorCheck.html
+COLUMN Cursors 999,999,999,999,999
+
 --ScalabilityInfo.html
 COLUMN percCPU heading "%CPU" FORMAT 90.99
 COLUMN percDisk heading "%DISK" FORMAT 90.99
