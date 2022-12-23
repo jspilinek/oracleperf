@@ -3,6 +3,14 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v22.10] - 2022-12-23
+### Added
+- Schemas.html
+- Ignore WBM schemas when entered schema is ALL
+### Fixed
+- Column width for CursorCheck.html
+- Column width in FullSqlTextAndPlans.html
+
 ## [v22.09] - 2022-12-15
 ### Added
 - Highlight important table rows

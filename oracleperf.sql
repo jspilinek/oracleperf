@@ -1,7 +1,7 @@
 -- oracleperf.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Based on gather_info_script.sql
 
-DEF oracleperf_version = "v22.09"
+DEF oracleperf_version = "v22.10"
 DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version <a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
 
@@ -45,12 +45,13 @@ PRO days:<b class="main-header">&&days_up</b>
 PRO generated:<b class="main-header">&&execute_time</b>
 PRO </p>
 PRO <p class="main-header">
-PRO schema:<b class="main-header">&&schema_list</b>
+PRO reported schema:<b class="main-header">&&schema_list</b>
 PRO </p>
 
 PRO <table class="main">
 PRO <tr><td><ul>
 PRO <li><a href="OracleVersion.html">Oracle Version</a></li>
+PRO <li><a href="Schemas.html">Schemas</a></li>
 PRO <li><a href="Exadata.html">Exadata</a></li>
 PRO <li><a href="WindchillVersion.html">Windchill Version</a></li>
 PRO <li><a href="WindchillVersionHistory.html">Windchill Version History</a></li>
@@ -148,6 +149,7 @@ SPOOL OFF
 
 --Column 1
 @@sql/OracleVersion.sql
+@@sql/Schemas.sql
 @@sql/Exadata.sql
 @@sql/WindchillVersion.sql
 @@sql/WindchillVersionHistory.sql
