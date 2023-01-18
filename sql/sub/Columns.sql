@@ -21,6 +21,6 @@ WHERE col.owner IN (&&schema_list)
     AND tab.table_name=col.table_name 
     AND tab.owner=col.owner
     AND col.num_distinct > 0
-    AND col.table_name NOT LIKE 'AUD\_%' ESCAPE '\'
+    AND col.table_name NOT LIKE 'AUD/_%' ESCAPE '/'
 ORDER BY col.owner, col.table_name, col.column_name
 ;
