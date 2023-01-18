@@ -17,6 +17,7 @@ SELECT ind.owner,
   ind.index_type
 FROM dba_ind_columns col,dba_indexes ind
 WHERE ind.owner IN (&&schema_list)
- AND col.index_name=ind.index_name 
- AND col.index_owner=ind.owner
+  AND col.index_name=ind.index_name 
+  AND col.index_owner=ind.owner
+  AND col.table_name NOT LIKE 'AUD\_%' ESCAPE '\'
 ORDER BY ind.owner, col.table_name, col.index_name, col.column_position;
