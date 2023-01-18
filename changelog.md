@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v23.01] - 2022-01-18
+### Changed
+- Filter out AUD_* tables from Tables.sql, Indexes.sql and Columns.sql
+
 ## [v22.10] - 2022-12-23
 ### Added
 - Schemas.html
