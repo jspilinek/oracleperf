@@ -3,11 +3,15 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
-## [v23.02] - 2022-01-18
+## [v23.03] - 2023-02-03
+### Changed
+- Ignore DBMS_SCHEDULER when creating AWR SQL reports
+
+## [v23.02] - 2023-01-18
 ### Fixed
 - Corrected ESCAPE character
 
-## [v23.01] - 2022-01-18
+## [v23.01] - 2023-01-18
 ### Changed
 - Filter out AUD_* tables from Tables.sql, Indexes.sql and Columns.sql
 
