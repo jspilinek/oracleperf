@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v23.04] - 2023-02-28
+### Fixed
+- AWR-SQLID reports
+
 ## [v23.03] - 2023-02-03
 ### Changed
 - Ignore DBMS_SCHEDULER when creating AWR SQL reports

@@ -1,7 +1,7 @@
 -- oracleperf.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Based on gather_info_script.sql
 
-DEF oracleperf_version = "v23.03"
+DEF oracleperf_version = "v23.04"
 DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version <a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
 
