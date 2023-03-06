@@ -5,7 +5,8 @@ where statistic_name = 'segment scans'
 and object_type NOT IN ('INDEX', 'INDEX PARTITION')
 group by statistic_name)
 select * from 
-(select ss.owner, ss.tablespace_name, ss.object_name, ss.subobject_name, ss.object_type, lob.table_name as lob_table_name,
+(select ss.owner, ss.tablespace_name, ss.object_name, ss.subobject_name, ss.object_type, 
+lob.table_name as lob_table_name, lob.column_name as lob_column_name,
 ss.value as segment_scans,
 round(ss.value/t.sum_value*100,2) as "% of Total"
 from v$segment_statistics ss
