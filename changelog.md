@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v23.05] - 2023-03-06
+### Changed
+- Added LOB column name to SegmentStatistics.html
+
 ## [v23.04] - 2023-02-28
 ### Fixed
 - AWR-SQLID reports
