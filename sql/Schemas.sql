@@ -6,11 +6,12 @@ DEF prevpage = 'OracleVersion.html';
 
 SET MARK HTML OFF;
 PRO <p>
-PRO reported schema:<b class="main-header">&&schema_list</b><br>
-PRO entered schema:<b class="main-header">&&enteredSchema</b>
+PRO oracleperf.sql script recieved the schema input: <b class="main-header">&&enteredSchema</b>
+PRO </p><p>
+PRO The Oracle report was generated for the following schemas: <b class="main-header">&&schema_list</b>
 PRO </p>
 
-PRO All Schemas:
+PRO List of all schemas in the database:
 SET MARKUP HTML ON TABLE "class=sortable";
 @@sql/sub/Schemas.sql
 
