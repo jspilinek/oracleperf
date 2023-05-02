@@ -537,6 +537,12 @@ function oracleperf(filename){
     case "UndoCheck.html":
       UndoCheck();
       break;
+    case "TablesWithoutIndexes.html":
+      TablesWithoutIndexes();
+      break;
+    case "IdColumnNoIndexes.html":
+      IdColumnNoIndexes();
+      break;
     case "PerfTablesAge.html":
       PerfTablesAge();
       break;
@@ -550,6 +556,18 @@ function highlightRow(rows, rowNum){
 
 function enableWarning(rows, rowNum, colNum){
   rows[rowNum].children[colNum].className = 'warn';    
+}
+
+function isNotBackupTable(tableName){
+  if (tableName.indexOf('_') > -1)
+    if(!tableName.endsWith('_EFF'))
+      return false;
+  if (tableName.endsWith('BKP'))
+    return false;
+  if (tableName.endsWith('BAK'))
+    return false;
+
+  return true;
 }
 
 /*****************************************************************************************************
@@ -870,6 +888,58 @@ function UndoCheck(){
       var intNeeded = parseInt(textNeeded.replace(/\,/g,''));
       if (intActual < intNeeded){
         enableWarning(rows,i,colActual);
+      }
+  }
+}
+
+/*****************************************************************************************************
+  Red warning text if table is not a backup
+*****************************************************************************************************/
+function TablesWithoutIndexes(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var colTableName;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'TABLE_NAME'){
+        colTableName = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var textTableName = rows[i].children[colTableName].innerText;
+      if(isNotBackupTable(textTableName))
+        enableWarning(rows,i,colTableName);
+  }
+}
+
+/*****************************************************************************************************
+  Red warning text if table is not a backup and column is IDA2A2
+*****************************************************************************************************/
+function IdColumnNoIndexes(){
+  var table = document.getElementsByClassName("sortable")[0];
+  var rows = table.rows;
+
+  var colTableName;
+  var colColumnName;
+  for (var i = 0; i < rows[0].childElementCount; i++){
+      columnHeader = rows[0].children[i].innerText;
+      if (columnHeader == 'TABLE_NAME'){
+        colTableName = i;
+      }else if (columnHeader == 'COLUMN_NAME'){
+        colColumnName = i;
+      }
+  }
+  
+  for (var i = 1; i < rows.length; i++){
+      var textTableName = rows[i].children[colTableName].innerText;
+      var textColumnName = rows[i].children[colColumnName].innerText;
+      if(isNotBackupTable(textTableName)){
+        if(textColumnName == 'IDA2A2'){
+          enableWarning(rows,i,colTableName);
+          enableWarning(rows,i,colColumnName);
+        }
       }
   }
 }
