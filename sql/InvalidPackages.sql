@@ -1,7 +1,7 @@
 DEF title = 'Invalid Packages (DBA_OBJECTS)';
 DEF filename = 'InvalidPackages.html';
 DEF nextpage = 'Waits.html';
-DEF prevpage = 'ViewDefinitions.html';
+DEF prevpage = 'Triggers.html';
 @@00_begin.sql
 
 @@sql/sub/InvalidPackages.sql
