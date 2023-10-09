@@ -9,7 +9,7 @@ Download the latest version from either:
 ### Changed
 - Removed CDB$ROOT filter
 - Update comments in Schemas.html
-- Filter RDSADMIN in Schemas.sql
+- Filter PDBADMIN and RDSADMIN in Schemas.sql
 
 ## [v23.05] - 2023-03-07
 ### Changed
