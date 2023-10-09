@@ -61,6 +61,7 @@ PRO <tr><td>ORDSYS</td></tr>
 PRO <tr><td>OUTLN</td></tr>
 PRO <tr><td>OWBSYS</td></tr>
 PRO <tr><td>OWBSYS_AUDIT</td></tr>
+PRO <tr><td>PDBADMIN</td></tr>
 PRO <tr><td>PM</td></tr>
 PRO <tr><td>QS</td></tr>
 PRO <tr><td>QS_CBADM</td></tr>

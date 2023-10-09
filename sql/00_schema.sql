@@ -61,6 +61,7 @@ SELECT listagg('''' || username || '''', ',') within group (order by username) A
     'OUTLN',
     'OWBSYS',
     'OWBSYS_AUDIT',
+    'PDBADMIN',
     'PM',
     'QS',
     'QS_CBADM',
