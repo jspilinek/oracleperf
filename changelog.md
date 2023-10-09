@@ -3,6 +3,14 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v23.06] - 2023-10-09
+### Added
+- Highlighting added to TablesWithoutIndexes.html and IdColumnNoIndexes.html
+### Changed
+- Removed CDB$ROOT filter
+- Update comments in Schemas.html
+- Filter RDSADMIN in Schemas.sql
+
 ## [v23.05] - 2023-03-07
 ### Changed
 - Added LOB column name to SegmentStatistics.html
