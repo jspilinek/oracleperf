@@ -68,6 +68,7 @@ SELECT listagg('''' || username || '''', ',') within group (order by username) A
     'QS_ES',
     'QS_OS',
     'QS_WS',
+    'RDSADMIN',
     'REMOTE_SCHEDULER_AGENT',
     'SCOTT',
     'SH',

@@ -68,6 +68,7 @@ PRO <tr><td>QS_CS</td></tr>
 PRO <tr><td>QS_ES</td></tr>
 PRO <tr><td>QS_OS</td></tr>
 PRO <tr><td>QS_WS</td></tr>
+PRO <tr><td>RDSADMIN</td></tr>
 PRO <tr><td>REMOTE_SCHEDULER_AGENT</td></tr>
 PRO <tr><td>SCOTT</td></tr>
 PRO <tr><td>SH</td></tr>
