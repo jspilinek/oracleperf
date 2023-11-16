@@ -31,6 +31,7 @@ PRO <tr><td>AUDSYS</td></tr>
 PRO <tr><td>BI</td></tr>
 PRO <tr><td>CLOUDCTL_USER</td></tr>
 PRO <tr><td>CTXSYS</td></tr>
+PRO <tr><td>DBMONITOR</td></tr>
 PRO <tr><td>DBSFWUSER</td></tr>
 PRO <tr><td>DBSNMP</td></tr>
 PRO <tr><td>DIP</td></tr>
@@ -42,6 +43,7 @@ PRO <tr><td>FLOWS_FILES</td></tr>
 PRO <tr><td>GGSYS</td></tr>
 PRO <tr><td>GSMADMIN_INTERNAL</td></tr>
 PRO <tr><td>GSMCATUSER</td></tr>
+PRO <tr><td>GSMROOTUSER</td></tr>
 PRO <tr><td>GSMUSER</td></tr>
 PRO <tr><td>HR</td></tr>
 PRO <tr><td>IX</td></tr>
@@ -71,6 +73,7 @@ PRO <tr><td>QS_OS</td></tr>
 PRO <tr><td>QS_WS</td></tr>
 PRO <tr><td>RDSADMIN</td></tr>
 PRO <tr><td>REMOTE_SCHEDULER_AGENT</td></tr>
+PRO <tr><td>RMAN_USER</td></tr>
 PRO <tr><td>SCOTT</td></tr>
 PRO <tr><td>SH</td></tr>
 PRO <tr><td>SI_INFORMTN_SCHEMA</td></tr>
