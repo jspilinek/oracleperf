@@ -3,6 +3,12 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v23.07] - 2023-12-13
+### Added
+- 2nd table in Waits.html with 'enq: TX - row lock contention' filter
+### Changed
+- Filter DBMONITOR, GSMROOTUSER, RMAN_USER in Schemas.sql
+
 ## [v23.06] - 2023-10-09
 ### Added
 - Highlighting added to TablesWithoutIndexes.html and IdColumnNoIndexes.html
