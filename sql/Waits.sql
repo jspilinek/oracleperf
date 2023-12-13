@@ -8,6 +8,11 @@ SET MARK HTML ON ENTMAP OFF;
 @@sql/sub/Waits.sql
 
 SET MARK HTML OFF;
+PRO <h2>Ignore 'enq: TX - row lock contention':</h2>
+SET MARK HTML ON ENTMAP OFF;
+@@sql/sub/WaitsNoRowLock.sql
+
+SET MARK HTML OFF;
 PRO <h2>Comments</h2>
 PRO <p>Oracle wait events are how Oracle records time spent doing something other than executing a
 PRO SQL statement. Wait events come in two main types, ones which are important and ones which are
