@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v24.01] - 2024-06-20
+### Changed
+- Don't highlight MIG$ tables that are missing indexes
+
 ## [v23.07] - 2023-12-13
 ### Added
 - 2nd table in Waits.html with 'enq: TX - row lock contention' filter
