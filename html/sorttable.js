@@ -566,7 +566,9 @@ function isNotBackupTable(tableName){
     return false;
   if (tableName.endsWith('BAK'))
     return false;
-
+  if (tableName.startsWith('MIG$'))
+    return false;
+  
   return true;
 }
 
