@@ -53,4 +53,9 @@ PRO <h2>Buffer Busy Waits:</h2>
 SET MARK HTML ON TABLE "class=sortable";
 @@sql/sub/StatBufferBusy.sql
 
+SET MARK HTML OFF;
+PRO <h2>ITL Waits:</h2>
+SET MARK HTML ON TABLE "class=sortable";
+@@sql/sub/StatITLWaits.sql
+
 @@00_end.sql
