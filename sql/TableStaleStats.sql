@@ -1,4 +1,4 @@
-DEF title = 'Table Stale Statistics (dba_tab_statistics)';
+DEF title = 'Table Stale Statistics (dba_tab_statistics dba_tab_modifications)';
 DEF filename = 'TableStaleStats.html';
 DEF nextpage = 'LockedStats.html';
 DEF prevpage = 'TableNullAnalyzed.html';

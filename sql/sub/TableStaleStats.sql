@@ -1,12 +1,16 @@
-SELECT tab.owner,
-  tab.table_name,
-  tab.stale_stats,
-  tab.num_rows,
-  tab.sample_size,
-  ROUND((tab.sample_size/NVL(NULLIF(tab.num_rows,0),1))*100,2) AS "Sample Percent",
-  TO_CHAR(tab.last_analyzed,'YYYY-MM-DD HH24:MI:SS') AS LAST_ANALYZED  
-FROM dba_tab_statistics tab
-WHERE tab.owner IN (&&schema_list)
- AND tab.stale_stats = 'YES'
-ORDER BY tab.owner, tab.table_name
+SELECT m.table_owner as "OWNER",
+m.table_name,
+s.stale_stats,
+s.num_rows,
+to_char(s.last_analyzed, 'yyyy-mm-dd hh24:mi:ss') as "LAST_ANALYZED",
+(m.inserts + m.updates + m.deletes) as "Total Modifications",
+m.inserts,
+m.updates,
+m.deletes,
+to_char(m.timestamp, 'yyyy-mm-dd hh24:mi:ss') as "last modified",
+m.truncated
+FROM dba_tab_modifications m
+LEFT OUTER JOIN dba_tab_statistics s ON s.owner = m.table_owner AND s.table_name = m.table_name
+WHERE m.table_owner IN (&&schema_list)
+ORDER BY "Total Modifications" DESC
 ;

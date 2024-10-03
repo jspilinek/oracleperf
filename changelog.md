@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v24.02] - 2024-10-03
+### Changed
+- Reworked TableStaleStats.html to include dba_tab_modifications
+
 ## [v24.01] - 2024-09-24
 ### Added
 - ITL Waits in SegmentStatistics.html
