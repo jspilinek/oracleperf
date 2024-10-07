@@ -2,8 +2,10 @@
 -- Based on gather_info_script.sql
 
 DEF oracleperf_version = "v24.02"
-DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version <a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
+DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version';
+DEF article_link = '<a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
+DEF mainPage = '00_oracleperf.html'
 
 @@sql/00_ErrorCheck.sql
 
@@ -21,10 +23,10 @@ SET PAGESIZE 35;
 SET LINESIZE 80;
 
 SET TERMOUT ON VER OFF;
-PRO Generating 00_oracleperf.html
+PRO Generating &&mainPage
 SET TERMOUT OFF VER OFF;
 
-SPOOL html/00_oracleperf.html;
+SPOOL html/&&mainPage;
 
 PRO <!DOCTYPE html>
 PRO <html>
@@ -34,7 +36,7 @@ PRO <link rel="stylesheet" type="text/css" href="oracleperf.css">
 PRO <script src="sorttable.js"></script>
 PRO </head>
 PRO <body>
-PRO <h1>&&title</h1>
+PRO <h1>&&title &&article_link</h1>
 PRO <p class="main-header">
 PRO instance:<b class="main-header">&&instance_name</b>
 PRO version:<b class="main-header">&&oracle_version</b>
@@ -248,7 +250,7 @@ SPOOL OFF
 @@sql/FullSqlTextAndPlans.sql
 
 SET TERMOUT OFF;
-SPOOL html/00_oracleperf.html APPEND
+SPOOL html/&&mainPage APPEND
 PRO </ul></td></tr></table>
 @@sql/00_footer.sql
 SPOOL OFF;
