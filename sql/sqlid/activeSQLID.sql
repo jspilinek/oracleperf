@@ -7,7 +7,7 @@ DEF prevpage = 'sqltext.txt';
 
 SET MARK HTML ON TABLE "class=sortable" ENTMAP OFF;
 
-@@sql/sqlid/sub/ActiveSQLID.sql
+@@sql/sqlid/sub/activeSQLID.sql
 
 SET MARK HTML OFF;
 PRO <h2>Comments</h2>
