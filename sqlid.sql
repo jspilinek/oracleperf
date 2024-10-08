@@ -66,6 +66,8 @@ PRO <li>Plans <a href="Plans.html">html</a> <a href="Plans.txt">txt</a></li>
 PRO </ul></td>
 PRO <td><ul>
 PRO <li><a href="dba_hist_sql_plan.html">dba_hist_sql_plan</a></li>
+PRO <li><a href="dba_hist_sql_plan_formatted.html">Formatted dba_hist_sql_plan</a></li>
+PRO <br>
 PRO <li><a href="dba_hist_sqlstat.html">dba_hist_sqlstat</a></li>
 PRO </ul></td>
 
@@ -85,6 +87,7 @@ SPOOL OFF
 
 --Column 4
 @@sql/sqlid/dba_hist_sql_plan.sql
+@@sql/sqlid/dba_hist_sql_plan_formatted.sql
 @@sql/sqlid/dba_hist_sqlstat.sql
 
 --Column 5

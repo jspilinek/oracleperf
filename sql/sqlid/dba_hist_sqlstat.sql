@@ -1,7 +1,7 @@
 DEF title = 'dba_hist_sqlstat';
 DEF filename = 'dba_hist_sqlstat.html';
 DEF nextpage = '&&mainPage';
-DEF prevpage = 'dba_hist_sql_plan.html';
+DEF prevpage = 'dba_hist_sql_plan_formatted.html';
 @@sql/00_begin.sql
 
 

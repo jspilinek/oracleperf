@@ -1,6 +1,6 @@
 DEF title = 'dba_hist_sql_plan';
 DEF filename = 'dba_hist_sql_plan.html';
-DEF nextpage = 'dba_hist_sqlstat.html';
+DEF nextpage = 'dba_hist_sql_plan_formatted.html';
 DEF prevpage = 'Plans.html';
 @@sql/00_begin.sql
 
