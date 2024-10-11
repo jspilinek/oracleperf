@@ -3,12 +3,13 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
-## [v24.03] - 2024-10-08
+## [v24.03] - 2024-10-11
 ### Added
 - dba_hist_sql_plan_formatted.html
 ### Fixed
 - Typo in sqlid/activeSQLID.sql
 - Order by dbid in dba_hist_sql_plan.sql and dba_hist_sqlstat.sql
+- Increase width for child cursor stats in FullSqlTextAndPlans.txt
 
 ## [v24.02] - 2024-10-07
 ### Added
