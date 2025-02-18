@@ -546,6 +546,9 @@ function oracleperf(filename){
     case "PerfTablesAge.html":
       PerfTablesAge();
       break;
+    case "FullSqlTextAndPlans.html":
+      FullSqlTextAndPlans();
+      break;
   }
 
 }
@@ -1011,3 +1014,25 @@ function PerfTablesAge(){
   }
 }
 
+/*****************************************************************************************************
+  Red warning text if plan contains:
+    MERGE JOIN CARTESIAN
+    TABLE ACCESS FULL
+*****************************************************************************************************/
+function FullSqlTextAndPlans(){
+    // Get all the pre elements with the specified classes
+    const preElements = document.querySelectorAll("pre.plan1, pre.plan2, pre.plan3");
+
+    preElements.forEach(pre => {
+        // Check if the pre element contains the text "MERGE JOIN CARTESIAN"
+        if (pre.innerHTML.includes("MERGE JOIN CARTESIAN")) {
+            // Replace the text with the same text wrapped in a span with red color
+            pre.innerHTML = pre.innerHTML.replace(/MERGE JOIN CARTESIAN/g, '<span style="color: red;">MERGE JOIN CARTESIAN</span>');
+        }
+        // Check if the pre element contains the text "TABLE ACCESS FULL"
+        if (pre.innerHTML.includes("TABLE ACCESS FULL")) {
+          // Replace the text with the same text wrapped in a span with red color
+          pre.innerHTML = pre.innerHTML.replace(/TABLE ACCESS FULL/g, '<span style="color: red;">TABLE ACCESS FULL</span>');
+      }
+    })
+}
