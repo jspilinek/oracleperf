@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v25.01] - 2025-02-18
+### Added
+- Red text highlighting of plans in FullSqlTextAndPlans.html
+
 ## [v24.03] - 2024-10-11
 ### Added
 - dba_hist_sql_plan_formatted.html
