@@ -27,7 +27,7 @@ COL workload_access_granted NEW_VALUE workload_access_granted FOR A48;
 SELECT 'None' workload_access_granted FROM DUAL;
 WITH exec_workload AS (
 SELECT grantee
-FROM dba_tab_privs
+    FROM USER_TAB_PRIVS
 WHERE table_name = 'DBMS_WORKLOAD_REPOSITORY'
 AND privilege = 'EXECUTE'
 )
@@ -36,7 +36,7 @@ FROM exec_workload
 WHERE grantee = USER
 UNION ALL
 SELECT exec_workload.grantee, 'ROLE' AS workload_access_granted
-FROM exec_workload, user_role_privs urp
+FROM exec_workload, USER_ROLE_PRIVS urp
 WHERE urp.granted_role = exec_workload.grantee
 AND urp.username = USER;
 
