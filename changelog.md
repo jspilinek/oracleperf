@@ -3,9 +3,11 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
-## [v25.01] - 2025-02-18
+## [v25.01] - 2025-03-07
 ### Added
 - Red text highlighting of plans in FullSqlTextAndPlans.html
+### Fixed
+- ORA-01722: invalid number in TableDOP.sql
 
 ## [v24.03] - 2024-10-11
 ### Added
