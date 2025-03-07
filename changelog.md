@@ -6,8 +6,11 @@ Download the latest version from either:
 ## [v25.01] - 2025-03-07
 ### Added
 - Red text highlighting of plans in FullSqlTextAndPlans.html
+- grants_for_oraperf.sql
+- grants_for_windchill_schema.sql
 ### Fixed
 - ORA-01722: invalid number in TableDOP.sql
+- dba_tab_privs replaced with user_tab_privs
 
 ## [v24.03] - 2024-10-11
 ### Added

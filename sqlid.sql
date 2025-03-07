@@ -1,7 +1,7 @@
 -- sqlid.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Report on a single SQLID
 
-DEF oracleperf_version = "v24.03"
+DEF oracleperf_version = "v25.01"
 DEF script_name = 'SQLID Report &oracleperf_version';
 DEF article_link = '<a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
