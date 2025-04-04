@@ -26,19 +26,18 @@ SET TERMOUT OFF VER OFF;
 COL workload_access_granted NEW_VALUE workload_access_granted FOR A48;
 SELECT 'None' workload_access_granted FROM DUAL;
 WITH exec_workload AS (
-SELECT grantee
+    SELECT grantee
     FROM USER_TAB_PRIVS
-WHERE table_name = 'DBMS_WORKLOAD_REPOSITORY'
-AND privilege = 'EXECUTE'
+    WHERE table_name = 'DBMS_WORKLOAD_REPOSITORY'
+    AND privilege = 'EXECUTE'
 )
-SELECT exec_workload.grantee, 'USER' AS workload_access_granted
+SELECT 'USER' AS workload_access_granted
 FROM exec_workload
 WHERE grantee = USER
 UNION ALL
-SELECT exec_workload.grantee, 'ROLE' AS workload_access_granted
-FROM exec_workload, USER_ROLE_PRIVS urp
-WHERE urp.granted_role = exec_workload.grantee
-AND urp.username = USER;
+SELECT 'ROLE' AS workload_access_granted
+FROM USER_ROLE_PRIVS
+WHERE granted_role = 'DBA';
 
 SET TERMOUT OFF VER OFF;
 COL is_enterprise NEW_V is_enterprise FOR A1;
