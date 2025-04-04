@@ -1,7 +1,7 @@
 -- oracleperf.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Based on gather_info_script.sql
 
-DEF oracleperf_version = "v25.01"
+DEF oracleperf_version = "v25.02"
 DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version';
 DEF article_link = '<a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
@@ -18,6 +18,7 @@ ALTER SESSION SET NLS_NUMERIC_CHARACTERS = '.,';
 
 @@sql/00_values.sql
 @@sql/00_ColumnFormat.sql
+
 
 SET PAGESIZE 35;
 SET LINESIZE 80;
@@ -55,8 +56,8 @@ PRO <tr><td><ul>
 PRO <li><a href="OracleVersion.html">Oracle Version</a></li>
 PRO <li><a href="Schemas.html">Schemas</a></li>
 PRO <li><a href="Exadata.html">Exadata</a></li>
-PRO <li><a href="WindchillVersion.html">Windchill Version</a></li>
-PRO <li><a href="WindchillVersionHistory.html">Windchill Version History</a></li>
+@@sql/00_checkForWindchillVersion.sql
+@@sql/00_checkForCodebeamerVersion.sql
 PRO <li><a href="Uptime.html">Uptime</a></li>
 PRO <li><a href="Instance.html">Instance</a></li>
 PRO <li><a href="ImportantParam.html">Important Parameters</a></li>
@@ -155,6 +156,7 @@ SPOOL OFF
 @@sql/Exadata.sql
 @@sql/WindchillVersion.sql
 @@sql/WindchillVersionHistory.sql
+@@sql/CodebeamerVersion.sql
 @@sql/Uptime.sql
 @@sql/Instance.sql
 @@sql/ImportantParam.sql

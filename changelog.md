@@ -3,6 +3,13 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v25.02] - 2025-04-04
+### Added
+- CodebeamerVersion.html
+- 00_checkForWindchillVersion.sql so we don't report on Windchill in non-Windchill databases (e.g. Codebeamer)
+### Changed
+- 00_license.sql check for DBA role
+
 ## [v25.01] - 2025-03-07
 ### Added
 - Red text highlighting of plans in FullSqlTextAndPlans.html
