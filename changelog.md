@@ -3,6 +3,12 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v25.03] - 2025-05-20
+### Added
+- ActiveSql-IgnoreQueueLock.sql and BlockingSql-IgnoreQueueLock.sql These scripts are not used, but are provided as examples of automated troubleshooting
+### Changed
+- Added SQL_ID's to BlockingSql.sql
+
 ## [v25.02] - 2025-04-04
 ### Added
 - CodebeamerVersion.html
