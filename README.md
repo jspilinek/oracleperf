@@ -1,5 +1,5 @@
 # oracleperf
-Oracle Performance and Diagnostics Report for PTC Windchill PDMLink
+Oracle Performance and Diagnostics Report for PTC Windchill PDMLink and Codebeamer
 
 Check https://www.ptc.com/en/support/article?n=CS271394 for latest version of this script
 
