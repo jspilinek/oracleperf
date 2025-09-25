@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v25.04] - 2025-09-25
+### Added
+- AwrReports.html
+
 ## [v25.03] - 2025-05-20
 ### Added
 - ActiveSql-IgnoreQueueLock.sql and BlockingSql-IgnoreQueueLock.sql These scripts are not used, but are provided as examples of automated troubleshooting
