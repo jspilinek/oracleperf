@@ -1,6 +1,6 @@
 DEF title = 'AWR Retention (DBA_HIST_WR_CONTROL)';
 DEF filename = 'AwrRetention.html';
-DEF nextpage = '00_oracleperf.html';
+DEF nextpage = 'AwrReports.html';
 DEF prevpage = 'SqlPlanBaselines.html';
 @@00_begin.sql
 
