@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v25.05] - 2025-09-26
+### Changed
+- 100 AWR report limit incase snap_interval is less than 1 hour
+
 ## [v25.04] - 2025-09-25
 ### Added
 - AwrReports.html
