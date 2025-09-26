@@ -21,7 +21,7 @@ PRO <a href="AwrReports.html">AWR Reports</a>
 
 SPOOL html/AwrReports.html APPEND
 PRO <table class="sortable">
-PRO <tr><th>Report</th><th>Start Time</th><th>Duration<br>(hh:mi:ss)</th><th>SQL Elapsed Time<br>(s)</th></tr>
+PRO <tr><th>Report</th><th>Start Time</th><th>Duration<br>(hh:mi:ss)</th><th>SQL Elapsed<br>Time (s)</th></tr>
 
 SPOOL OFF
 SET MARK HTML OFF;
