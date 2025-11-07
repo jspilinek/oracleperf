@@ -76,6 +76,8 @@ PRO <li><a href="MemoryTargetAdvice.html">Memory Target Advice</a></li>
 PRO <li><a href="DbCacheAdvice.html">DB Cache Advice</a></li>
 PRO <li><a href="PgaTargetAdvice.html">PGA Target Advice</a></li>
 PRO <li><a href="SharedPoolAdvice.html">Shared Pool Advice</a></li>
+PRO <br>
+PRO <li><a href="PdbInfo.html">PDB Info</a></li>
 PRO </ul></td>
 PRO <td><ul>
 PRO <li><a href="CursorCheck.html">Cursor Check</a></li>
@@ -175,6 +177,8 @@ SPOOL OFF
 @@sql/DbCacheAdvice.sql
 @@sql/PgaTargetAdvice.sql
 @@sql/SharedPoolAdvice.sql
+
+@@sql/PdbInfo.sql
 
 --Column 2
 @@sql/CursorCheck.sql

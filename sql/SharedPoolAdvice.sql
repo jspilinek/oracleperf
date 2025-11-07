@@ -1,6 +1,6 @@
 DEF title = 'Shared Pool Advice (V$SHARED_POOL_ADVICE)';
 DEF filename = 'SharedPoolAdvice.html';
-DEF nextpage = 'CursorCheck.html';
+DEF nextpage = 'PdbInfo.html';
 DEF prevpage = 'PgaTargetAdvice.html';
 @@00_begin.sql
 

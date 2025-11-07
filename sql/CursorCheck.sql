@@ -1,7 +1,7 @@
 DEF title = 'Cursor Check (V$SYSSTAT V$SGASTAT)';
 DEF filename = 'CursorCheck.html';
 DEF nextpage = 'ParseStatistics.html';
-DEF prevpage = 'SharedPoolAdvice.html';
+DEF prevpage = 'PdbInfo.html';
 @@00_begin.sql
 
 @@sql/sub/CursorCheck.sql
