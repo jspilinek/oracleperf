@@ -3,6 +3,12 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v26.01] - 2026-03-26
+### Added
+- "Collected because" context per SQL_ID to explain why each SQL_ID was collected in FullSqlTextAndPlans.html and FullSqlTextAndPlans.txt
+### Changed
+- Enhanced FullSqlTextAndPlans.sql to use a hybrid SQL_ID collector, ensuring all worst SQL reports reliably link to full SQL text and plans
+
 ## [v25.06] - 2025-11-07
 ### Added
 - PdbInfo.html

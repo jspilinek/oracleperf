@@ -37,7 +37,8 @@ FROM v$sqlstats
 WHERE sql_id = '&1'
 GROUP BY sql_id;
 
---Blank line
+PRO
+PRO Collected because: &2
 PRO
 
 /****** Child cursor stats ******/
@@ -191,6 +192,7 @@ GROUP BY sql_id;
 
 SET MARKUP HTML OFF PREFORMAT OFF ENTMAP OFF;
 PRO </p></p>
+PRO <p>Collected because: &2</p>
 
 /****** Child cursor stats ******/
 SET MARKUP HTML OFF PREFORMAT OFF ENTMAP OFF;

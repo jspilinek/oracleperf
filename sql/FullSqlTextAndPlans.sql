@@ -37,82 +37,173 @@ PRO Generating list of SQL IDs
 SET TERMOUT OFF;
 SPOOL sql/99_full.sql REPLACE;
 
-WITH sqlstats AS (
-SELECT sql_id, 
-  SUM(executions) AS executions, 
-  SUM(elapsed_time) AS elapsed_time, 
-  ROUND(SUM(elapsed_time)/1000000/NVL(NULLIF(SUM(executions),0),1),3) AS elaps_per_exec, 
-  SUM(buffer_gets) AS buffer_gets, 
-  SUM(disk_reads) AS disk_reads, 
-  SUM(rows_processed) AS rows_processed/*,
-  SUM(application_wait_time) AS application_wait_time,
-  SUM(concurrency_wait_time) AS concurrency_wait_time,
-  SUM(cluster_wait_time) AS cluster_wait_time,
-  SUM(user_io_wait_time) AS user_io_wait_time*/
-FROM v$sqlstats
-WHERE sql_text NOT LIKE 'SELECT /* DS_SVC */%'
-AND sql_text NOT LIKE '/* SQL Analyze(%'
-AND sql_text NOT LIKE '%/*gather_info_script*/%'
-GROUP BY sql_id
+WITH core_sqlstats AS (
+  SELECT
+    sql_id,
+    SUM(executions)            executions,
+    SUM(elapsed_time)          elapsed_time,
+    SUM(buffer_gets)           buffer_gets,
+    SUM(disk_reads)            disk_reads,
+    SUM(rows_processed)        rows_processed,
+    ROUND(
+      SUM(elapsed_time)/1000000 /
+      NVL(NULLIF(SUM(executions),0),1), 3
+    ) elaps_per_exec
+  FROM v$sqlstats
+  WHERE sql_text NOT LIKE '%/*gather_info_script*/%'
+  GROUP BY sql_id
 ),
---#########################################
-top_elapsed_time AS (
-SELECT sql_id, elapsed_time FROM (
-  SELECT sql_id, elapsed_time
-  FROM sqlstats
-  WHERE elapsed_time > 10000000 -- nothing less than 10 sec
-  ORDER BY elapsed_time DESC)
-WHERE rownum <= &TopNumber),
---#########################################
-top_elap_per_exec AS (
-SELECT sql_id, elapsed_time FROM (
-  SELECT sql_id, elapsed_time
-  FROM sqlstats
-  WHERE elaps_per_exec >= 1 -- nothing less than 1 sec
-  ORDER BY elaps_per_exec DESC)
-WHERE rownum <= &TopNumber),
---#########################################
-top_buffer_gets AS (
-SELECT sql_id, elapsed_time FROM (
-  SELECT sql_id, elapsed_time
-  FROM sqlstats
-  WHERE buffer_gets > 10000
-  ORDER BY buffer_gets DESC)
-WHERE rownum <= &TopNumber),
---#########################################
-top_disk_reads AS (
-SELECT sql_id, elapsed_time FROM (
-  SELECT sql_id, elapsed_time
-  FROM sqlstats
-  WHERE disk_reads > 10000
-  ORDER BY disk_reads DESC)
-WHERE rownum <= &TopNumber),
---#########################################
-top_executions AS (
-SELECT sql_id, elapsed_time FROM (
-  SELECT sql_id, elapsed_time
-  FROM sqlstats
-  WHERE executions > 1000
-  ORDER BY executions DESC)
-WHERE rownum <= &TopNumber),
---#########################################
-top_rows_per_exec AS (
-SELECT sql_id, elapsed_time FROM (
-  SELECT sql_id, elapsed_time
-  FROM sqlstats
-  WHERE rows_processed > 200000
-  ORDER BY rows_processed/NVL(NULLIF(executions,0),1) DESC)
-WHERE rownum <= &TopNumber)
---#########################################
-SELECT '@sql/sqlid.sql '||sql_id--, 
-FROM (
-  SELECT sql_id, elapsed_time FROM top_elapsed_time 
-  UNION SELECT sql_id, elapsed_time FROM top_elap_per_exec 
-  UNION SELECT sql_id, elapsed_time FROM top_buffer_gets 
-  UNION SELECT sql_id, elapsed_time FROM top_disk_reads 
-  UNION SELECT sql_id, elapsed_time FROM top_executions 
-  UNION SELECT sql_id, elapsed_time FROM top_rows_per_exec)
-ORDER BY elapsed_time DESC;
+core_top_sql AS (
+  SELECT sql_id, 'High Total Elapsed Time (SQL_ID aggregate)' AS reason, 10 AS priority
+  FROM (
+    SELECT sql_id
+    FROM core_sqlstats
+    WHERE elapsed_time > 10000000
+    ORDER BY elapsed_time DESC
+  ) WHERE rownum <= &TopNumber
+  UNION
+  SELECT sql_id, 'High Elapsed Time per Execution (SQL_ID aggregate)' AS reason, 20 AS priority
+  FROM (
+    SELECT sql_id
+    FROM core_sqlstats
+    WHERE elaps_per_exec >= 1
+    ORDER BY elaps_per_exec DESC
+  ) WHERE rownum <= &TopNumber
+  UNION
+  SELECT sql_id, 'High Buffer Gets (SQL_ID aggregate)' AS reason, 30 AS priority
+  FROM (
+    SELECT sql_id
+    FROM core_sqlstats
+    WHERE buffer_gets > 10000
+    ORDER BY buffer_gets DESC
+  ) WHERE rownum <= &TopNumber
+  UNION
+  SELECT sql_id, 'High Disk Reads (SQL_ID aggregate)' AS reason, 40 AS priority
+  FROM (
+    SELECT sql_id
+    FROM core_sqlstats
+    WHERE disk_reads > 10000
+    ORDER BY disk_reads DESC
+  ) WHERE rownum <= &TopNumber
+  UNION
+  SELECT sql_id, 'High Execution Count (SQL_ID aggregate)' AS reason, 50 AS priority
+  FROM (
+    SELECT sql_id
+    FROM core_sqlstats
+    WHERE executions > 1000
+    ORDER BY executions DESC
+  ) WHERE rownum <= &TopNumber
+  UNION
+  SELECT sql_id, 'High Row Count (SQL_ID aggregate)' AS reason, 60 AS priority
+  FROM (
+    SELECT sql_id
+    FROM core_sqlstats
+    WHERE rows_processed > 200000
+    ORDER BY rows_processed DESC
+  ) WHERE rownum <= &TopNumber
+),
+child_total_elapsed_sql AS (
+  SELECT DISTINCT sql_id, 'High Total Elapsed Time (child cursor)' AS reason, 1 AS priority
+  FROM (
+    SELECT
+      sql_id
+    FROM v$sqlstats
+    WHERE elapsed_time > 10000000 -- nothing less than 10 sec
+  ) WHERE rownum <= &TopNumber
+),
+child_avg_elapsed_sql AS (
+  SELECT DISTINCT sql_id, 'High Elapsed Time per Execution (child cursor)' AS reason, 2 AS priority
+  FROM (
+    SELECT
+      sql_id,
+      ROUND(elapsed_time/1000000/NVL(NULLIF(executions,0),1),3) AS elap_per_exec
+    FROM v$sqlstats
+    WHERE elapsed_time > 1000000          -- >= 1 second total time
+    ORDER BY elap_per_exec DESC, elapsed_time DESC
+  )
+  WHERE rownum <= &TopNumber 
+    AND elap_per_exec > 1
+),
+child_buffer_gets_sql AS (
+  SELECT DISTINCT sql_id, 'High Buffer Gets (child cursor)' AS reason, 3 AS priority
+  FROM (
+    SELECT
+      sql_id,
+      ROUND(buffer_gets/NVL(NULLIF(executions,0),1)) as Gets_per_Exec
+    FROM v$sqlstats
+    WHERE buffer_gets > 10000
+    ORDER BY buffer_gets DESC, Gets_per_Exec DESC
+  )
+  WHERE rownum <= &TopNumber 
+),
+child_disk_reads_sql AS (
+  SELECT DISTINCT sql_id, 'High Disk Reads (child cursor)' AS reason, 4 AS priority
+  FROM (
+    SELECT
+      sql_id,
+      ROUND(disk_reads/NVL(NULLIF(executions,0),1)) as Reads_per_Exec
+    FROM v$sqlstats
+    WHERE disk_reads > 10000
+    ORDER BY disk_reads DESC, Reads_per_Exec DESC
+  )
+  WHERE rownum <= &TopNumber 
+),
+child_execution_count_sql AS (
+  SELECT DISTINCT sql_id, 'High Execution Count (child cursor)' AS reason, 5 AS priority
+  FROM (
+    SELECT
+      sql_id
+    FROM v$sqlstats
+    WHERE executions > 1000
+    ORDER BY executions DESC
+  )
+  WHERE rownum <= &TopNumber 
+),
+child_row_count_sql AS (
+  SELECT DISTINCT sql_id, 'High Row Count (child cursor)' AS reason, 6 AS priority
+  FROM (
+    SELECT
+      sql_id,
+      ROUND(rows_processed/NVL(NULLIF(executions,0),1)) rows_per_exec
+    FROM v$sqlstats
+    WHERE rows_processed > 200000
+    ORDER BY rows_processed DESC
+  )
+  WHERE rownum <= &TopNumber 
+),
+collector_raw AS (
+  SELECT sql_id, reason, priority FROM core_top_sql
+  UNION
+  SELECT sql_id, reason, priority FROM child_total_elapsed_sql
+  UNION
+  SELECT sql_id, reason, priority FROM child_avg_elapsed_sql
+  UNION
+  SELECT sql_id, reason, priority FROM child_buffer_gets_sql
+  UNION
+  SELECT sql_id, reason, priority FROM child_disk_reads_sql
+  UNION
+  SELECT sql_id, reason, priority FROM child_execution_count_sql
+  UNION
+  SELECT sql_id, reason, priority FROM child_row_count_sql
+),
+collector_labeled AS (
+  SELECT
+    sql_id,
+    LISTAGG(reason, ', ') 
+      WITHIN GROUP (ORDER BY priority) AS collection_reason
+  FROM collector_raw
+  GROUP BY sql_id
+)
+SELECT
+  '@sql/sqlid.sql ' ||
+  c.sql_id || ' "' ||
+  REPLACE(l.collection_reason, '"', '''') || '"' AS cmd
+FROM collector_labeled l
+JOIN core_sqlstats s
+  ON s.sql_id = l.sql_id
+JOIN (SELECT DISTINCT sql_id FROM collector_labeled) c
+  ON c.sql_id = l.sql_id
+ORDER BY s.elapsed_time DESC NULLS LAST;
 
 SPOOL OFF;
 SET HEADING ON;
