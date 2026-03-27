@@ -3,6 +3,10 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v26.02] - 2026-03-27
+### Fixed
+- Increase linesize to prevent wrapping in 99_full.sql
+
 ## [v26.01] - 2026-03-26
 ### Added
 - "Collected because" context per SQL_ID to explain why each SQL_ID was collected in FullSqlTextAndPlans.html and FullSqlTextAndPlans.txt
