@@ -1,7 +1,7 @@
 -- oracleperf.sql by Jeremy Spilinek (jspilinek@ptc.com)
 -- Based on gather_info_script.sql
 
-DEF oracleperf_version = "v26.02"
+DEF oracleperf_version = "v26.03"
 DEF script_name = 'PTC Oracle Performance and Diagnostics Report &oracleperf_version';
 DEF article_link = '<a href="https://www.ptc.com/en/support/article/CS271394">CS271394</a>';
 DEF title = '&&script_name';
@@ -250,7 +250,7 @@ SPOOL OFF
 --FullSqlTextAndPlans.sql will run after AWR section
 
 --Column 5
-@@sql/99_Column5_AWR.sql
+@@html/debug_Column5_AWR.sql
 
 --Run this query last
 @@sql/FullSqlTextAndPlans.sql

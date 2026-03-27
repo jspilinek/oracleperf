@@ -3,6 +3,12 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v26.03] - 2026-03-27
+### Changed
+- Renamed generated scripts from `99_*.sql` to `debug_*.sql`
+- Moved `debug_*.sql` files from `sql` directory to `html` directory so diagnostics artifacts are included when customers provide the `html` directory to PTC Technical Support
+- `debug_*.sql` files are intended for support diagnostics only and not required to view generated HTML reports
+
 ## [v26.02] - 2026-03-27
 ### Fixed
 - Increase linesize to prevent wrapping in 99_full.sql
