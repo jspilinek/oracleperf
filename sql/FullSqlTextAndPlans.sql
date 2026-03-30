@@ -203,15 +203,15 @@ collector_raw AS (
 collector_labeled AS (
   SELECT
     sql_id,
-    LISTAGG(reason, ', ') 
+    LISTAGG(priority, ',') 
       WITHIN GROUP (ORDER BY priority) AS collection_reason
   FROM collector_raw
   GROUP BY sql_id
 )
 SELECT
   '@sql/sqlid.sql ' ||
-  c.sql_id || ' "' ||
-  REPLACE(l.collection_reason, '"', '''') || '"' AS cmd
+  c.sql_id || ' ' ||
+  l.collection_reason
 FROM collector_labeled l
 JOIN core_sqlstats s
   ON s.sql_id = l.sql_id

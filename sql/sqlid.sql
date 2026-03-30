@@ -38,10 +38,30 @@ WHERE sql_id = '&1'
 GROUP BY sql_id;
 
 PRO
-PRO Collected because: &2
-PRO
+SET HEADING OFF;
+SELECT
+  'Collected because: ' ||
+  LISTAGG(reason_text, ', ')
+    WITHIN GROUP (ORDER BY priority) AS reason
+FROM (
+  SELECT 1  priority, 'High total elapsed time (child cursor)'           reason_text FROM dual UNION ALL
+  SELECT 2, 'High elapsed time per execution (child cursor)'               FROM dual UNION ALL
+  SELECT 3, 'High buffer gets (child cursor)'                              FROM dual UNION ALL
+  SELECT 4, 'High disk reads (child cursor)'                               FROM dual UNION ALL
+  SELECT 5, 'High execution count (child cursor)'                          FROM dual UNION ALL
+  SELECT 6, 'High row count (child cursor)'                                FROM dual UNION ALL
+  SELECT 10,'High total elapsed time (SQL_ID aggregate)'                   FROM dual UNION ALL
+  SELECT 20,'High elapsed time per execution (SQL_ID aggregate)'           FROM dual UNION ALL
+  SELECT 30,'High buffer gets (SQL_ID aggregate)'                          FROM dual UNION ALL
+  SELECT 40,'High disk reads (SQL_ID aggregate)'                           FROM dual UNION ALL
+  SELECT 50,'High execution count (SQL_ID aggregate)'                      FROM dual UNION ALL
+  SELECT 60,'High row count (SQL_ID aggregate)'                            FROM dual
+)
+WHERE INSTR(',' || '&2' || ',', ',' || priority || ',') > 0;
+SET HEADING ON;
 
 /****** Child cursor stats ******/
+PRO
 PRO Child cursor stats (v$sql):
 SELECT a.child_number,
     a.plan_hash_value,
@@ -163,7 +183,29 @@ GROUP BY sql_id;
 
 SET MARKUP HTML OFF PREFORMAT OFF ENTMAP OFF;
 PRO </p></p>
-PRO <p>Collected because: &2</p>
+
+SET HEADING OFF;
+SELECT
+  'Collected because: ' ||
+  LISTAGG(reason_text, ', ')
+    WITHIN GROUP (ORDER BY priority) AS reason
+FROM (
+  SELECT 1  priority, 'High total elapsed time (child cursor)'           reason_text FROM dual UNION ALL
+  SELECT 2, 'High elapsed time per execution (child cursor)'               FROM dual UNION ALL
+  SELECT 3, 'High buffer gets (child cursor)'                              FROM dual UNION ALL
+  SELECT 4, 'High disk reads (child cursor)'                               FROM dual UNION ALL
+  SELECT 5, 'High execution count (child cursor)'                          FROM dual UNION ALL
+  SELECT 6, 'High row count (child cursor)'                                FROM dual UNION ALL
+  SELECT 10,'High total elapsed time (SQL_ID aggregate)'                   FROM dual UNION ALL
+  SELECT 20,'High elapsed time per execution (SQL_ID aggregate)'           FROM dual UNION ALL
+  SELECT 30,'High buffer gets (SQL_ID aggregate)'                          FROM dual UNION ALL
+  SELECT 40,'High disk reads (SQL_ID aggregate)'                           FROM dual UNION ALL
+  SELECT 50,'High execution count (SQL_ID aggregate)'                      FROM dual UNION ALL
+  SELECT 60,'High row count (SQL_ID aggregate)'                            FROM dual
+)
+WHERE INSTR(',' || '&2' || ',', ',' || priority || ',') > 0;
+SET HEADING ON;
+PRO </p></p>
 
 /****** Child cursor stats ******/
 SET MARKUP HTML OFF PREFORMAT OFF ENTMAP OFF;
