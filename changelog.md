@@ -3,6 +3,12 @@ Download the latest version from either:
 - https://www.ptc.com/en/support/article?n=CS271394
 - https://github.com/jspilinek/oracleperf/releases
 
+## [v26.05] - 2026-03-30
+### Fixed
+- Fixed an issue where some SQL_IDs were not being collected in FullSqlTextAndPlans.html and FullSqlTextAndPlans.txt 
+  due to a long collection reason that exceeded the maximum length a bind variable. The collection reason is 
+  now passed as priority values to fit within the maximum length.
+
 ## [v26.04] - 2026-03-27
 ### Changed
 - Renamed generated scripts from `99_*.sql` to `debug_*.sql`
